@@ -13,10 +13,6 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Aankoop" EntitySet="Aankoops" />
     </AssociationSet>
-    <AssociationSet Name="AankoopPaid" Association="BoodschappModel.Store.AankoopPaid">
-      <End Role="Aankoop" EntitySet="Aankoops" />
-      <End Role="Paid" EntitySet="Paids1" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -35,12 +31,11 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="user_id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
     <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="price" Type="nvarchar(max)" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
     <Property Name="updated_at" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_id1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Paids1">
     <Key>
@@ -49,9 +44,8 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id_sender" Type="nvarchar(max)" Nullable="false" />
     <Property Name="user_id_receiver" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="amount" Type="nvarchar(max)" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Aankoop_id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserAankoop">
     <End Role="User" Type="BoodschappModel.Store.Users" Multiplicity="1" />
@@ -61,19 +55,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Aankoop">
-        <PropertyRef Name="User_id1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AankoopPaid">
-    <End Role="Aankoop" Type="BoodschappModel.Store.Aankoops" Multiplicity="1" />
-    <End Role="Paid" Type="BoodschappModel.Store.Paids1" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Aankoop">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Paid">
-        <PropertyRef Name="Aankoop_id" />
+        <PropertyRef Name="User_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -88,10 +70,6 @@
           <AssociationSet Name="UserAankoop" Association="BoodschappModel.UserAankoop">
             <End Role="User" EntitySet="Users" />
             <End Role="Aankoop" EntitySet="Aankoops" />
-          </AssociationSet>
-          <AssociationSet Name="AankoopPaid" Association="BoodschappModel.AankoopPaid">
-            <End Role="Aankoop" EntitySet="Aankoops" />
-            <End Role="Paid" EntitySet="Paids1" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -112,14 +90,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="String" Nullable="false" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
           <Property Name="product_name" Type="String" Nullable="false" />
           <Property Name="price" Type="String" Nullable="false" />
           <Property Name="created_at" Type="String" Nullable="false" />
           <Property Name="updated_at" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="BoodschappModel.UserAankoop" FromRole="Aankoop" ToRole="User" />
-          <Property Name="User_id1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Paids" Relationship="BoodschappModel.AankoopPaid" FromRole="Aankoop" ToRole="Paid" />
         </EntityType>
         <EntityType Name="Paid">
           <Key>
@@ -128,10 +104,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id_sender" Type="String" Nullable="false" />
           <Property Name="user_id_receiver" Type="String" Nullable="false" />
-          <Property Name="price" Type="String" Nullable="false" />
+          <Property Name="amount" Type="String" Nullable="false" />
           <Property Name="created_at" Type="String" Nullable="false" />
-          <NavigationProperty Name="Aankoop" Relationship="BoodschappModel.AankoopPaid" FromRole="Paid" ToRole="Aankoop" />
-          <Property Name="Aankoop_id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="UserAankoop">
           <End Type="BoodschappModel.User" Role="User" Multiplicity="1" />
@@ -141,19 +115,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Aankoop">
-              <PropertyRef Name="User_id1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AankoopPaid">
-          <End Type="BoodschappModel.Aankoop" Role="Aankoop" Multiplicity="1" />
-          <End Type="BoodschappModel.Paid" Role="Paid" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Aankoop">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Paid">
-              <PropertyRef Name="Aankoop_id" />
+              <PropertyRef Name="User_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -180,12 +142,11 @@
       <EntityTypeMapping TypeName="IsTypeOf(BoodschappModel.Aankoop)">
         <MappingFragment StoreEntitySet="Aankoops">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
           <ScalarProperty Name="product_name" ColumnName="product_name" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="updated_at" ColumnName="updated_at" />
-          <ScalarProperty Name="User_id1" ColumnName="User_id1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -195,9 +156,8 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="user_id_sender" ColumnName="user_id_sender" />
           <ScalarProperty Name="user_id_receiver" ColumnName="user_id_receiver" />
-          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
           <ScalarProperty Name="created_at" ColumnName="created_at" />
-          <ScalarProperty Name="Aankoop_id" ColumnName="Aankoop_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

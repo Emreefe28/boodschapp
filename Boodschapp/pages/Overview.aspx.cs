@@ -11,7 +11,14 @@ namespace Boodschapp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["user"] != null)
+            {
+                lblName.Text = Session["user"].ToString();
+            }
+            else
+            {
+                lblName.Text = "Not set";
+            }
         }
     }
 }

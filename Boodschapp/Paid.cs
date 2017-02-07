@@ -17,10 +17,7 @@ namespace Boodschapp
         public int id { get; set; }
         public string user_id_sender { get; set; }
         public string user_id_receiver { get; set; }
-        public string price { get; set; }
+        public string amount { get; set; }
         public string created_at { get; set; }
-        public int Aankoop_id { get; set; }
-    
-        public virtual Aankoop Aankoop { get; set; }
     }
 }

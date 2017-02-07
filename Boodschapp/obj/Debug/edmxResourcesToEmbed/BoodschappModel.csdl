@@ -8,10 +8,6 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Aankoop" EntitySet="Aankoops" />
     </AssociationSet>
-    <AssociationSet Name="AankoopPaid" Association="BoodschappModel.AankoopPaid">
-      <End Role="Aankoop" EntitySet="Aankoops" />
-      <End Role="Paid" EntitySet="Paids1" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -31,14 +27,12 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="user_id" Type="String" Nullable="false" />
+    <Property Name="User_id" Type="Int32" Nullable="false" />
     <Property Name="product_name" Type="String" Nullable="false" />
     <Property Name="price" Type="String" Nullable="false" />
     <Property Name="created_at" Type="String" Nullable="false" />
     <Property Name="updated_at" Type="String" Nullable="false" />
     <NavigationProperty Name="User" Relationship="BoodschappModel.UserAankoop" FromRole="Aankoop" ToRole="User" />
-    <Property Name="User_id1" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Paids" Relationship="BoodschappModel.AankoopPaid" FromRole="Aankoop" ToRole="Paid" />
   </EntityType>
   <EntityType Name="Paid">
     <Key>
@@ -47,10 +41,8 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id_sender" Type="String" Nullable="false" />
     <Property Name="user_id_receiver" Type="String" Nullable="false" />
-    <Property Name="price" Type="String" Nullable="false" />
+    <Property Name="amount" Type="String" Nullable="false" />
     <Property Name="created_at" Type="String" Nullable="false" />
-    <NavigationProperty Name="Aankoop" Relationship="BoodschappModel.AankoopPaid" FromRole="Paid" ToRole="Aankoop" />
-    <Property Name="Aankoop_id" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="UserAankoop">
     <End Type="BoodschappModel.User" Role="User" Multiplicity="1" />
@@ -60,19 +52,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Aankoop">
-        <PropertyRef Name="User_id1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AankoopPaid">
-    <End Type="BoodschappModel.Aankoop" Role="Aankoop" Multiplicity="1" />
-    <End Type="BoodschappModel.Paid" Role="Paid" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Aankoop">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Paid">
-        <PropertyRef Name="Aankoop_id" />
+        <PropertyRef Name="User_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

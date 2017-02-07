@@ -8,10 +8,6 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Aankoop" EntitySet="Aankoops" />
     </AssociationSet>
-    <AssociationSet Name="AankoopPaid" Association="BoodschappModel.Store.AankoopPaid">
-      <End Role="Aankoop" EntitySet="Aankoops" />
-      <End Role="Paid" EntitySet="Paids1" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -30,12 +26,11 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="user_id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
     <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="price" Type="nvarchar(max)" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
     <Property Name="updated_at" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_id1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Paids1">
     <Key>
@@ -44,9 +39,8 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id_sender" Type="nvarchar(max)" Nullable="false" />
     <Property Name="user_id_receiver" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="amount" Type="nvarchar(max)" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Aankoop_id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserAankoop">
     <End Role="User" Type="BoodschappModel.Store.Users" Multiplicity="1" />
@@ -56,19 +50,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Aankoop">
-        <PropertyRef Name="User_id1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AankoopPaid">
-    <End Role="Aankoop" Type="BoodschappModel.Store.Aankoops" Multiplicity="1" />
-    <End Role="Paid" Type="BoodschappModel.Store.Paids1" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Aankoop">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Paid">
-        <PropertyRef Name="Aankoop_id" />
+        <PropertyRef Name="User_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
