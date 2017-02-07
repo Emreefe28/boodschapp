@@ -15,6 +15,41 @@ namespace Boodschapp
             {
                 Response.Redirect("login.aspx");
             }
+            using (var context = new BoodschappContext())
+            {
+                try
+                {
+                    var aankopen = context.Aankoops.ToList();
+                    foreach (var aankoop in aankopen)
+                    {
+                        TableRow tRow = new TableRow();
+                        ProductsTable.Rows.Add(tRow);
+
+                        TableCell nameCell = new TableCell();
+                        nameCell.Text = aankoop.product_name;
+                        tRow.Cells.Add(nameCell);
+
+                        TableCell priceCell = new TableCell();
+                        priceCell.Text = aankoop.price;
+                        tRow.Cells.Add(priceCell);
+
+                        TableCell buttonCell = new TableCell();
+                        Button ButtonDelete = new Button();
+                        ButtonDelete.Text = "Delete";
+                        ButtonDelete.CommandArgument = aankoop.id.ToString();
+                        ButtonDelete.ControlStyle.CssClass = "btn btn-primary";
+                        ButtonDelete.Click += new EventHandler(delete_product);
+                        buttonCell.Controls.Add(ButtonDelete);
+                        tRow.Cells.Add(buttonCell);
+                    }
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -27,15 +62,39 @@ namespace Boodschapp
                     aankoop.product_name = txtName.Text;
                     aankoop.price = txtPrice.Text;
                     aankoop.User_id = Convert.ToInt32(Session["user_id"]);
+
+                    // Normaal is dit al automatisch in de model
                     aankoop.created_at = String.Format("{0}", DateTime.Now);
                     aankoop.updated_at = String.Format("{0}", DateTime.Now);
+
                     context.Aankoops.Add(aankoop);
                     context.SaveChanges();
+                    Response.Redirect("Products.aspx");
                 }
                 catch (Exception)
                 {
                     throw;
                 }
+            }
+        }
+
+        protected void delete_product(object sender, EventArgs e)
+        {
+            Button ButtonDelete = (Button)sender;
+            int rowId = Convert.ToInt32(ButtonDelete.CommandArgument);
+            using (var context = new BoodschappContext())
+            {
+                try
+                    {
+                        var productToRemove = context.Aankoops.SingleOrDefault(a => a.id == rowId);
+                        context.Aankoops.Remove(productToRemove);
+                        context.SaveChanges();
+                        Response.Redirect("Products.aspx");
+                    }
+                catch (Exception)
+                    {
+                        throw;
+                    }
             }
         }
     }

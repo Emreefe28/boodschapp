@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="container">
+    <div class="container">
     <div class="row">
 	    <div class="span12">
             <div class="col-xs-4">
@@ -13,6 +13,9 @@
                 <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 <br />
                 <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            </div>
+            <div class="col-xs-4">
+                <asp:Table ID="ProductsTable" runat="server" CssClass="table table-bordered"></asp:Table>
             </div>
         </div>
     </div>
