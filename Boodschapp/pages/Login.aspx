@@ -3,7 +3,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="container">
+    <div class="container">
     <div class="row">
 		<div class="span12">
             <div class="col-xs-4">
@@ -12,6 +12,7 @@
 			    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required="required"></asp:TextBox>
 			    <label class="control-label" for="password">Password</label>
 			    <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" required="required"></asp:TextBox>
+			    <a href="Register.aspx">No account? Register</a>
 			    <br />
 			    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
                 <asp:Label ID="lblError" runat="server"></asp:Label>

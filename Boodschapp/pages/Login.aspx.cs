@@ -26,6 +26,7 @@ namespace Boodschapp
                     if (user != null)
                     {
                         Session["user_email"] = user.email;
+                        Session["user_id"] = user.id;
                         Response.Redirect("Overview.aspx");
                     }
                     else

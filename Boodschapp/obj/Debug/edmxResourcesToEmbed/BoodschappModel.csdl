@@ -14,8 +14,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" />
-    <Property Name="surname" Type="String" Nullable="false" />
     <Property Name="email" Type="String" Nullable="false" />
     <Property Name="password" Type="String" Nullable="false" />
     <Property Name="bank_nr" Type="String" Nullable="false" />
