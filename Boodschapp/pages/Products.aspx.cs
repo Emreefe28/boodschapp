@@ -19,6 +19,16 @@ namespace Boodschapp
             {
                 try
                 {
+                    TableHeaderRow header = new TableHeaderRow();
+                    ProductsTable.Rows.Add(header);
+                    TableHeaderCell nameHeader = new TableHeaderCell();
+                    nameHeader.Text = "Product name";
+                    header.Cells.Add(nameHeader);
+
+                    TableHeaderCell priceHeader = new TableHeaderCell();
+                    priceHeader.Text = "Price";
+                    header.Cells.Add(priceHeader);
+
                     var aankopen = context.Aankoops.ToList();
                     foreach (var aankoop in aankopen)
                     {

@@ -7,7 +7,7 @@
 		    <div class="span12">
                 <div class="col-xs-4">
                     <h1 class="display-4">Register</h1>
-			        <label class="control-label" for="Name">Name</label>
+			        <label class="control-label" for="Email">Email</label>
 			        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required="required"></asp:TextBox>
 			        <label class="control-label" for="password">Password</label>
 			        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" required="required" TextMode="Password"></asp:TextBox>
