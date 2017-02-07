@@ -5,8 +5,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(BoodschappModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="surname" ColumnName="surname" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="bank_nr" ColumnName="bank_nr" />

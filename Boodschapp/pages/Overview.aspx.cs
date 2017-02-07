@@ -11,13 +11,13 @@ namespace Boodschapp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] != null)
+            if (Session["user_email"] != null)
             {
-                lblName.Text = Session["user"].ToString();
+                lblName.Text = "Welcome, " + Session["user_email"].ToString();
             }
             else
             {
-                lblName.Text = "Not set";
+                lblName.Text = "";
             }
         }
     }

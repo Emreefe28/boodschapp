@@ -21,7 +21,6 @@ namespace Boodschapp.Pages
             {
                 try
                 {
-                    var user = new User();
                     // Check if email already exists
                     if (context.Users.Any(a => a.email == txtEmail.Text))
                     {
@@ -29,8 +28,7 @@ namespace Boodschapp.Pages
                     }
                     else
                     {
-                        user.name = txtName.Text;
-                        user.surname = txtSurname.Text;
+                        var user = new User();
                         user.email = txtEmail.Text;
                         user.password = txtPassword.Text;
                         user.bank_nr = txtBanknr.Text;
