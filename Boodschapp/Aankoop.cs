@@ -14,20 +14,13 @@ namespace Boodschapp
     
     public partial class Aankoop
     {
-        public Aankoop()
-        {
-            this.Paids = new HashSet<Paid>();
-        }
-    
         public int id { get; set; }
-        public string user_id { get; set; }
+        public int User_id { get; set; }
         public string product_name { get; set; }
         public string price { get; set; }
         public string created_at { get; set; }
         public string updated_at { get; set; }
-        public int User_id1 { get; set; }
     
         public virtual User User { get; set; }
-        public virtual ICollection<Paid> Paids { get; set; }
     }
 }

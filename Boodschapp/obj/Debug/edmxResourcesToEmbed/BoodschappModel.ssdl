@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BoodschappModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BoodschappModelStoreContainer">
+    <EntitySet Name="Users" EntityType="BoodschappModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Aankoops" EntityType="BoodschappModel.Store.Aankoops" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Paids1" EntityType="BoodschappModel.Store.Paids1" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserAankoop" Association="BoodschappModel.Store.UserAankoop">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Aankoop" EntitySet="Aankoops" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="bank_nr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Aankoops">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_id" Type="int" Nullable="false" />
+    <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="updated_at" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paids1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id_sender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="user_id_receiver" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserAankoop">
+    <End Role="User" Type="BoodschappModel.Store.Users" Multiplicity="1" />
+    <End Role="Aankoop" Type="BoodschappModel.Store.Aankoops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Aankoop">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
