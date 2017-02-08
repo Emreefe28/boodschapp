@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="BoodschappModel.Aankoop" Width="1.5" PointX="5" PointY="3.25" />
         <EntityTypeShape EntityType="BoodschappModel.Paid" Width="1.5" PointX="7.5" PointY="3.25" />
         <AssociationConnector Association="BoodschappModel.UserAankoop" />
-        <AssociationConnector Association="BoodschappModel.AankoopPaid" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
