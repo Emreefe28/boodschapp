@@ -11,10 +11,11 @@ namespace Boodschapp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["user_id"] == null)
+            if (Session["user_id"] == null)
             {
                 Response.Redirect("login.aspx");
             }
+
             using (var context = new BoodschappContext())
             {
                 try
@@ -28,8 +29,8 @@ namespace Boodschapp
                     TableHeaderCell priceHeader = new TableHeaderCell();
                     priceHeader.Text = "Price";
                     header.Cells.Add(priceHeader);
-
-                    var aankopen = context.Aankoops.ToList();
+                    int user_id = Convert.ToInt32(Session["user_id"]);
+                    var aankopen = context.Aankoops.Where(x => x.User_id == user_id).ToList();
                     foreach (var aankoop in aankopen)
                     {
                         TableRow tRow = new TableRow();
@@ -40,7 +41,7 @@ namespace Boodschapp
                         tRow.Cells.Add(nameCell);
 
                         TableCell priceCell = new TableCell();
-                        priceCell.Text = aankoop.price;
+                        priceCell.Text = aankoop.price.ToString();
                         tRow.Cells.Add(priceCell);
 
                         TableCell buttonCell = new TableCell();
@@ -52,14 +53,12 @@ namespace Boodschapp
                         buttonCell.Controls.Add(ButtonDelete);
                         tRow.Cells.Add(buttonCell);
                     }
-
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -70,7 +69,7 @@ namespace Boodschapp
                 {
                     var aankoop = new Aankoop();
                     aankoop.product_name = txtName.Text;
-                    aankoop.price = txtPrice.Text;
+                    aankoop.price = Convert.ToDouble(txtPrice.Text);
                     aankoop.User_id = Convert.ToInt32(Session["user_id"]);
 
                     // Normaal is dit al automatisch in de model
@@ -90,21 +89,21 @@ namespace Boodschapp
 
         protected void delete_product(object sender, EventArgs e)
         {
-            Button ButtonDelete = (Button)sender;
+            Button ButtonDelete = (Button) sender;
             int rowId = Convert.ToInt32(ButtonDelete.CommandArgument);
             using (var context = new BoodschappContext())
             {
                 try
-                    {
-                        var productToRemove = context.Aankoops.SingleOrDefault(a => a.id == rowId);
-                        context.Aankoops.Remove(productToRemove);
-                        context.SaveChanges();
-                        Response.Redirect("Products.aspx");
-                    }
+                {
+                    var productToRemove = context.Aankoops.SingleOrDefault(a => a.id == rowId);
+                    context.Aankoops.Remove(productToRemove);
+                    context.SaveChanges();
+                    Response.Redirect("Products.aspx");
+                }
                 catch (Exception)
-                    {
-                        throw;
-                    }
+                {
+                    throw;
+                }
             }
         }
     }

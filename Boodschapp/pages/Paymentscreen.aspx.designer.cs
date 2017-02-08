@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Boodschapp {
+namespace Boodschapp.Pages {
     
     
-    public partial class Pay {
+    public partial class Paymentscreen {
         
         /// <summary>
-        /// PaymentTable control.
+        /// btnPay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table PaymentTable;
+        protected global::System.Web.UI.WebControls.Button btnPay;
     }
 }

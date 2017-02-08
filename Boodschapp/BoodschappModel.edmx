@@ -31,7 +31,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User_id" Type="int" Nullable="false" />
     <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
     <Property Name="updated_at" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -88,7 +88,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="User_id" Type="Int32" Nullable="false" />
           <Property Name="product_name" Type="String" Nullable="false" />
-          <Property Name="price" Type="String" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="created_at" Type="String" Nullable="false" />
           <Property Name="updated_at" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="BoodschappModel.UserAankoop" FromRole="Aankoop" ToRole="User" />

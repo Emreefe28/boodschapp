@@ -11,7 +11,7 @@
 			    <label class="control-label"  for="Email" >Email</label>
 			    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required="required"></asp:TextBox>
 			    <label class="control-label" for="password">Password</label>
-			    <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" required="required"></asp:TextBox>
+			    <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" required="required" TextMode="Password"></asp:TextBox>
 			    <a href="Register.aspx">No account? Register</a>
 			    <br />
 			    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-primary" OnClick="btnLogin_Click" />

@@ -19,8 +19,8 @@
         <li><a href="Products.aspx">Products</a></li>
         <li><a href="Pay.aspx">Pay</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="Login.aspx">Login</a></li>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a href="Login.aspx">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

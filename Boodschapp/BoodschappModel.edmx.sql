@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/07/2017 21:01:27
+-- Date Created: 02/08/2017 13:01:23
 -- Generated from EDMX file: C:\Users\Emre-PC\Documents\Visual Studio 2013\Projects\ASP\Boodschapp\Boodschapp\BoodschappModel.edmx
 -- --------------------------------------------------
 
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[Aankoops] (
     [id] int IDENTITY(1,1) NOT NULL,
     [User_id] int  NOT NULL,
     [product_name] nvarchar(max)  NOT NULL,
-    [price] nvarchar(max)  NOT NULL,
+    [price] float  NOT NULL,
     [created_at] nvarchar(max)  NOT NULL,
     [updated_at] nvarchar(max)  NOT NULL
 );

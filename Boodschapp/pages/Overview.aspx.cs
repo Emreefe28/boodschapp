@@ -51,14 +51,13 @@ namespace Boodschapp
                         tRow.Cells.Add(nameCell);
 
                         TableCell priceCell = new TableCell();
-                        priceCell.Text = aankoop.price;
+                        priceCell.Text = aankoop.price.ToString();
                         tRow.Cells.Add(priceCell);
 
                         TableCell userCell = new TableCell();
                         userCell.Text = aankoop.User.email;
                         tRow.Cells.Add(userCell);
                     }
-
                 }
                 catch (Exception)
                 {
