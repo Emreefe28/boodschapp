@@ -11,7 +11,10 @@ namespace Boodschapp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["user_email"] != null)
+            {
+                Session.Abandon();
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -22,7 +25,8 @@ namespace Boodschapp
                 {
                     var password = txtPass.Text;
                     // Check if the user details are correct
-                    var user = context.Users.Where(u => u.email == txtEmail.Text && u.password == password).FirstOrDefault();
+                    var user =
+                        context.Users.Where(u => u.email == txtEmail.Text && u.password == password).FirstOrDefault();
                     if (user != null)
                     {
                         Session["user_email"] = user.email;
@@ -33,7 +37,6 @@ namespace Boodschapp
                     {
                         lblError.Text = "Email or password is wrong!";
                     }
-
                 }
                 catch (Exception)
                 {

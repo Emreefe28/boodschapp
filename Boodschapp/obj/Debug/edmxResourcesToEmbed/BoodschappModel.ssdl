@@ -26,7 +26,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User_id" Type="int" Nullable="false" />
     <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
     <Property Name="created_at" Type="nvarchar(max)" Nullable="false" />
     <Property Name="updated_at" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
